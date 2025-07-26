@@ -1,28 +1,40 @@
 package com.gonza.pna.infrastructure.controller;
 
-import com.gonza.pna.infrastructure.controller.dto.UserRequest;
-import com.gonza.pna.infrastructure.controller.dto.UserResponse;
-import org.springframework.web.bind.annotation.RestController;
+import com.gonza.pna.application.port.in.CrudUserUseCase;
+import com.gonza.pna.application.service.dto.UserDtoRequest;
+import com.gonza.pna.application.service.dto.UserDtoResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController implements UserApi {
+
+    private CrudUserUseCase crudUserUseCase;
+
     @Override
-    public UserResponse createUser(UserRequest userRequest) {
-        return null;
+    @PostMapping
+    public UserDtoResponse createUser(UserDtoRequest userDtoRequest) {
+        return crudUserUseCase.createUser(userDtoRequest);
+    }
+
+
+    @Override
+    @PutMapping
+    public UserDtoResponse updateUser(UserDtoRequest userDtoRequest) {
+        return crudUserUseCase.updateUser(userDtoRequest);
     }
 
     @Override
-    public UserResponse updateUser(UserRequest userRequest) {
-        return null;
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        crudUserUseCase.deleteUserById(id);
     }
 
     @Override
-    public UserResponse deleteUser(Long id) {
-        return null;
-    }
-
-    @Override
-    public UserResponse getUser(Long id) {
-        return null;
+    @GetMapping("/{id}")
+    public UserDtoResponse getUser(@PathVariable Long id) {
+        return crudUserUseCase.getUserById(id);
     }
 }

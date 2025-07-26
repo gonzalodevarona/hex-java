@@ -1,9 +1,6 @@
 package com.gonza.pna.infrastructure.persistance;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Table(name = "users")
-public final class UserEntity {
-
+public class UserEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -22,3 +18,4 @@ public final class UserEntity {
     private String email;
     private int age;
 }
+

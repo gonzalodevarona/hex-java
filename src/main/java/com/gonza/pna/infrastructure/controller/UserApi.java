@@ -1,7 +1,7 @@
 package com.gonza.pna.infrastructure.controller;
 
-import com.gonza.pna.infrastructure.controller.dto.UserRequest;
-import com.gonza.pna.infrastructure.controller.dto.UserResponse;
+import com.gonza.pna.application.service.dto.UserDtoRequest;
+import com.gonza.pna.application.service.dto.UserDtoResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface UserApi {
 
     @PostMapping
-    public UserResponse createUser(UserRequest userRequest);
+    public UserDtoResponse createUser(UserDtoRequest userDtoRequest);
 
     @PostMapping
-    public UserResponse updateUser(UserRequest userRequest);
+    public UserDtoResponse updateUser(UserDtoRequest userDtoRequest);
 
     @DeleteMapping
-    public UserResponse deleteUser(Long id);
+    public void deleteUser(Long id);
 
     @GetMapping
-    public UserResponse getUser(Long id);
+    public UserDtoResponse getUser(Long id);
 }
